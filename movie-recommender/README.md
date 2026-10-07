@@ -2,7 +2,7 @@
 
 I. Overview: This is a machine learning-based movie recommendation application which tailors suggestions based on user preferences and behavior. 
 
-II. User need assessment: Real users were surveyed regarding their experiences watching movies and interacting with movie suggestion avenues. Participants were asked questions about user behavior, movie preferences, rating and viewing history, and user needs
+II. User need assessment: Real users were surveyed regarding their experiences watching movies and interacting with movie suggestion avenues. Participants were asked questions about user behavior, movie preferences, rating and viewing history, and user needs.
 
 This assessment provided insight into what a user wants from a movie recommendation system. Although a supplementary movie review dataset was used to train the model, this assessment gave structure to the goals this system should achieve. As a result, this system was created with the goals of usability, personalization, and explanation in mind. These efforts will hopefully make this platform accessible and appealing to a larger population.
 
