@@ -1,0 +1,14 @@
+# MovieLens data
+data/ml-latest-small.zip
+data/ml-latest-small/
+
+# Python
+__pycache__/
+*.py[cod]
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+env/
