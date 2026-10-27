@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#07111f">
+    <title>MovieMatch — Find your next favorite</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <script src="/static/app.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#" aria-label="MovieMatch home">
+        <span class="brand-mark" aria-hidden="true">M</span>
+        <span>Movie<span class="brand-accent">Match</span></span>
+      </a>
+      <nav class="header-nav" aria-label="Main navigation">
+        <a href="#how-it-works">How it works</a>
+        <a class="nav-cta" href="#rate-movies">Get started <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-glow hero-glow-one" aria-hidden="true"></div>
+        <div class="hero-glow hero-glow-two" aria-hidden="true"></div>
+        <div class="hero-content">
+          <p class="eyebrow"><span class="eyebrow-dot"></span> A little more you in movie night</p>
+          <h1 id="hero-title">Find your next<br><span>favorite movie.</span></h1>
+          <p class="hero-copy">Tell us what you love. We’ll find the stories you didn’t know you were looking for.</p>
+          <a class="primary-button hero-button" href="#rate-movies">Build my recommendations <span aria-hidden="true">→</span></a>
+          <div class="hero-proof"><span class="proof-stars" aria-hidden="true">★★★★★</span> Personal picks, made for you</div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-orbit orbit-one"></div>
+          <div class="art-orbit orbit-two"></div>
+          <div class="art-poster poster-back">
+            <span class="poster-kicker">A story worth finding</span>
+            <span class="poster-title">BEYOND<br>THE FRAME</span>
+          </div>
+          <div class="art-poster poster-front">
+            <span class="poster-kicker">Your next favorite</span>
+            <span class="poster-title">THE<br>UNEXPECTED</span>
+            <span class="poster-caption">A MOVIEMATCH ORIGINAL</span>
+          </div>
+          <div class="floating-note"><span>✦</span> Curated for your taste</div>
+        </div>
+        <a class="hero-scroll" href="#rate-movies"><span></span> Start exploring</a>
+      </section>
+
+      <section class="onboarding section-wrap" id="rate-movies" aria-labelledby="onboarding-title">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow eyebrow-dark">YOUR TASTE, YOUR PICKS</p>
+            <h2 id="onboarding-title">First, tell us what you love.</h2>
+            <p class="section-copy">Rate at least five movies you’ve seen. We’ll use your taste to find something new.</p>
+          </div>
+          <div class="step-indicator" aria-label="Step 1 of 1"><span>01</span><i></i><span>01</span></div>
+        </div>
+
+        <div class="onboarding-grid">
+          <div class="rating-column">
+            <section class="panel search-panel" aria-labelledby="search-title">
+              <div class="panel-heading">
+                <span class="step-icon" aria-hidden="true">⌕</span>
+                <div>
+                  <h3 id="search-title">Search your movie history</h3>
+                  <p>Find a title, then add your rating.</p>
+                </div>
+              </div>
+              <label class="sr-only" for="movie-search">Search movie titles</label>
+              <div class="search-control">
+                <span class="search-icon" aria-hidden="true">⌕</span>
+                <input id="movie-search" type="search" autocomplete="off" placeholder="Try “The Grand Budapest Hotel”" aria-controls="search-results" aria-expanded="false">
+                <span class="search-hint">⌘ K</span>
+                <div id="search-results" class="search-results" role="listbox" aria-label="Movie search results" hidden></div>
+              </div>
+            </section>
+
+            <section class="panel popular-panel" aria-labelledby="popular-title">
+              <div class="panel-heading compact-heading">
+                <div>
+                  <h3 id="popular-title">Popular with movie fans</h3>
+                  <p>A few favorites to get you started.</p>
+                </div>
+                <span class="panel-label">QUICK ADD</span>
+              </div>
+              <p id="poster-config-note" class="poster-config-note" hidden>TMDB posters are off. Set <code>TMDB_ACCESS_TOKEN</code> in your local <code>.env</code> file to load movie artwork.</p>
+              <div id="popular-movies" class="popular-grid" aria-live="polite">
+                <div class="loading-line">Finding popular movies…</div>
+              </div>
+            </section>
+          </div>
+
+          <aside class="panel selected-panel" aria-labelledby="selected-title">
+            <div class="selected-header">
+              <div>
+                <p class="eyebrow eyebrow-dark">YOUR MOVIE LIST</p>
+                <h3 id="selected-title">Movies you’ve seen</h3>
+              </div>
+              <span id="rating-count" class="count-badge">0 / 5</span>
+            </div>
+            <p class="selected-hint">Your ratings stay in this session.</p>
+            <div id="selected-movies" class="selected-list">
+              <div id="empty-state" class="empty-state">
+                <span class="empty-icon" aria-hidden="true">＋</span>
+                <p>Your picks will show up here.</p>
+                <span>Search for a movie or choose a quick add.</span>
+              </div>
+            </div>
+            <div class="minimum-note">
+              <span class="minimum-check" aria-hidden="true">✓</span>
+              <span id="minimum-message">Rate 5 movies to unlock your recommendations.</span>
+            </div>
+            <button id="recommend-button" class="primary-button recommend-button" type="button" disabled>
+              <span>Find my top 10</span><span aria-hidden="true">→</span>
+            </button>
+            <p class="privacy-note"><span aria-hidden="true">◇</span> No account needed. Just good movies.</p>
+          </aside>
+        </div>
+      </section>
+
+      <section class="recommendations-section section-wrap" id="recommendations" aria-labelledby="recommendations-title" hidden>
+        <div class="section-heading recommendations-heading">
+          <div>
+            <p class="eyebrow eyebrow-dark">PICKED FOR YOUR TASTE</p>
+            <h2 id="recommendations-title">Your next movie night.</h2>
+            <p class="section-copy">Based on the movies you rated. Your predicted scores are a guide, not a guarantee.</p>
+          </div>
+          <button id="edit-ratings" class="secondary-button" type="button">← Edit my ratings</button>
+        </div>
+        <div id="recommendation-status" class="recommendation-status" role="status" aria-live="polite"></div>
+        <div id="recommendation-cards" class="recommendation-grid"></div>
+      </section>
+
+      <section class="how-it-works section-wrap" id="how-it-works" aria-labelledby="how-title">
+        <p class="eyebrow eyebrow-dark">A BETTER WAY TO PICK</p>
+        <h2 id="how-title">Your taste is the algorithm.</h2>
+        <div class="how-grid">
+          <article><span>01</span><h3>Rate what you know</h3><p>Give a few familiar movies a half-star rating.</p></article>
+          <article><span>02</span><h3>We learn your vibe</h3><p>The hybrid model connects your ratings with movie and genre patterns.</p></article>
+          <article><span>03</span><h3>Find something new</h3><p>Get ten highly ranked picks you haven’t rated yet.</p></article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <a class="brand footer-brand" href="#"><span class="brand-mark" aria-hidden="true">M</span><span>Movie<span class="brand-accent">Match</span></span></a>
+      <div class="footer-credits">
+        <p class="tmdb-credit">This product uses the TMDB API but is not endorsed or certified by TMDB.<br><a href="https://www.themoviedb.org/" target="_blank" rel="noopener noreferrer">The Movie Database (TMDB)</a></p>
+        <a class="tmdb-logo-link" href="https://www.themoviedb.org/" target="_blank" rel="noopener noreferrer" aria-label="The Movie Database (TMDB)">
+          <img class="tmdb-logo" src="https://www.themoviedb.org/assets/v4/logos/v2/blue_long_2-9665a76b1ae401a510ec1e0ca40ddcb3b0cfe45f1d51b77a308fea0845885648.svg" alt="The Movie Database logo">
+        </a>
+      </div>
+      <p>Made for movie nights and the people who love them.</p>
+    </footer>
+  </body>
+</html>

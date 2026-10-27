@@ -21,7 +21,22 @@ IV. Environment: TensorFlow, an open source machine learning platform, and Jupty
 
     python -m ipykernel install --user --name movie-recommender --display-name "Movie Recommender"
 
-V. UI Development: Once the model was trained, a UI was created. This UI was developed through wire-framing and high-fidelity prototype iterations. Once created, the AI model was integrated with the front-end to provide the real-time movie recommendation system.
+V. Run the web app: The MovieMatch frontend is built with HTML, CSS, and JavaScript. A small Flask API serves the frontend and connects it to the TensorFlow recommender. From the project root, activate a Python 3.11 environment and install the app dependencies:
 
-VI. Usability Testing and Application Iteration: A usability test was conducted to gather user feedback, identify bugs, and understand user interaction. Results were analyzed and the application was updated accordingly. 
+    conda activate movie-recommender
 
+    python -m pip install -r requirements.txt
+
+The MovieLens Latest Small CSV files should be extracted under `data/ml-latest-small/`. Start the app from the project root:
+
+    python app.py
+
+Open [http://127.0.0.1:5000](http://127.0.0.1:5000) in your browser. The app searches titles, accepts ratings from 0.5 to 5 in half-star increments, and requires at least five ratings before requesting recommendations. On the first recommendation request after the server starts, the API trains the hybrid model in memory using the same model structure and training settings as the notebook. The browser then displays the ten highest-scoring unrated movies as cards. MovieLens does not include poster images, so the cards use locally styled artwork rather than external poster images.
+
+To load TMDB posters, copy `.env.example` to `.env` and set `TMDB_ACCESS_TOKEN` to your TMDB API Read Access Token in that local file. Restart `python app.py` after saving it. The token stays on the server and is not sent to the browser or included in the repository; `.env` is ignored by Git. The app matches MovieLens `movieId` values to TMDB IDs through `links.csv`, requests poster metadata from TMDB, and caches poster paths in memory. If the token is unset, a movie has no TMDB poster, or TMDB is unavailable, the styled poster fallback remains visible.
+
+TMDB attribution is shown in the app footer, including the required notice: “This product uses the TMDB API but is not endorsed or certified by TMDB.” Poster paths are served from TMDB’s image CDN according to its [image guidelines](https://developer.themoviedb.org/docs/image-basics). See TMDB’s [authentication documentation](https://developer.themoviedb.org/docs/authentication-application) for API token details.
+
+VI. UI Development: The web app is based on wire-framing and high-fidelity prototype iterations. The notebook remains available for data exploration, model evaluation, and experimentation.
+
+VII. Usability Testing and Application Iteration: A usability test was conducted to gather user feedback, identify bugs, and understand user interaction. Results were analyzed and the application was updated accordingly.
